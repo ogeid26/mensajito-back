@@ -1,4 +1,5 @@
-import { Entity, Column, DeleteDateColumn } from "typeorm";
+import { Message } from "src/messages/entities/message.entity";
+import { Entity, Column, DeleteDateColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class User {
@@ -17,4 +18,8 @@ export class User {
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @OneToMany( () => Message,
+        (message) => message.user)
+    messages: Message[];
 }
